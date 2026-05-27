@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  
+  --color-brand-primary: var(--color-accent-500);
+  --color-brand-secondary: var(--color-accent-600);
+  --color-brand-accent: #f59e0b;
+  --color-brand-dark: #0f172a;
+}
+
+:root {
+  --color-accent-600: #2563eb;
+  --color-accent-500: #3b82f6;
+  --color-accent-400: #60a5fa;
+  
+  --app-bg: #f8fafc;
+  --card-bg: #ffffff;
+  --card-hover-bg: #f8fafc;
+  --border-primary: #e2e8f0;
+  --border-secondary: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+}
+
+/* Theme accent variants */
+:root.accent-emerald {
+  --color-accent-600: #059669;
+  --color-accent-500: #10b981;
+  --color-accent-400: #34d399;
+}
+:root.accent-gold {
+  --color-accent-600: #d97706;
+  --color-accent-500: #f59e0b;
+  --color-accent-400: #fbbf24;
+}
+:root.accent-purple {
+  --color-accent-600: #7c3aed;
+  --color-accent-500: #8b5cf6;
+  --color-accent-400: #a78bfa;
+}
+
+/* Dark basic classes mapping for Tailwind v4 compatibility */
+.dark {
+  --app-bg: #0d1527;
+  --card-bg: #121c33;
+  --card-hover-bg: #1d294a;
+  --border-primary: #1f2d4d;
+  --border-secondary: #17243e;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+}
+
+/* Adjust dark theme based on manual contrast choices */
+.dark.contrast-midnight {
+  --app-bg: #030712;
+  --card-bg: #0b111e;
+  --card-hover-bg: #161e2e;
+  --border-primary: #1e293b;
+  --border-secondary: #111827;
+}
+
+.dark.contrast-charcoal {
+  --app-bg: #121212;
+  --card-bg: #1e1e1e;
+  --card-hover-bg: #2b2b2b;
+  --border-primary: #2d2d2d;
+  --border-secondary: #1f1f1f;
+}
+
+@layer base {
+  body {
+    @apply font-sans antialiased transition-colors duration-200;
+    background-color: var(--app-bg) !important;
+    color: var(--text-primary) !important;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+    color: var(--text-primary) !important;
+  }
+  
+  /* Apply dark theme adjustments on all layout blocks dynamically inside .dark element */
+  .dark {
+    color-scheme: dark;
+    
+    input, select, textarea {
+      background-color: var(--card-bg) !important;
+      border-color: var(--border-primary) !important;
+      color: var(--text-primary) !important;
+    }
+    
+    /* Override tailwind default colors transparently */
+    .bg-white {
+      background-color: var(--card-bg) !important;
+    }
+    
+    .bg-slate-50 {
+      background-color: var(--app-bg) !important;
+    }
+    
+    .hover\:bg-slate-50:hover {
+      background-color: var(--card-hover-bg) !important;
+    }
+    
+    .border-slate-200, .border-slate-100 {
+      border-color: var(--border-primary) !important;
+    }
+    
+    /* Recharts charts and custom legends matching dark mode borders */
+    .recharts-default-tooltip {
+      background-color: var(--card-bg) !important;
+      border-color: var(--border-primary) !important;
+    }
+    
+    .text-slate-900, .text-slate-800 {
+      color: var(--text-primary) !important;
+    }
+    
+    .text-slate-700, .text-slate-600 {
+      color: var(--text-secondary) !important;
+    }
+    
+    .text-slate-500 {
+      color: var(--text-muted) !important;
+    }
+    
+    footer {
+      background-color: var(--card-bg) !important;
+      border-color: var(--border-primary) !important;
+    }
+  }
+}
+
+.glass-morphism {
+  @apply backdrop-blur-lg;
+  background-color: var(--nav-bg, rgba(255, 255, 255, 0.7));
+  border-color: var(--border-primary);
+}
+
+.dark .glass-morphism {
+  background-color: var(--nav-bg, rgba(15, 23, 42, 0.75));
+  border-color: var(--border-primary);
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-emerald-500;
+}

@@ -1,0 +1,18 @@
+{
+  "adminPermissions": {
+    "viewSystemMetrics": true,
+    "viewRegisteredStudents": true,
+    "bypassDatabaseMocks": true,
+    "exportStudentRoadmaps": true
+  },
+  "databaseConfiguration": {
+    "primary": "MongoDB Atlas Cloud connection",
+    "fallback": "Local file JSON persistence database",
+    "backupFolder": "/data"
+  },
+  "developerHubAlerts": {
+    "showUptimeTelemetry": true,
+    "activeThemeVariants": ["slate", "midnight", "charcoal"],
+    "brandPalettes": ["blue", "emerald", "gold", "purple"]
+  }
+}
